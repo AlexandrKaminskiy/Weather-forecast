@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="weather-forecast-flow" name="weather-forecast-flow" isExecutable="true">
+    <startEvent id="sid-2972fcc9-6bb9-41ce-a716-77550fc8ac6a"/>
+    <userTask id="userRequest" name="userRequest"/>
+    <serviceTask id="requestToWeatherApi" activiti:exclusive="true" name="requestToWeatherApi" activiti:class="by.singularity.weatherforecast.serviceTask.MakeRequestHandler"/>
+    <serviceTask id="saveToDb" activiti:exclusive="true" name="saveToDb" activiti:class="by.singularity.weatherforecast.serviceTask.SaveToDbHandler"/>
+    <endEvent id="sid-b8787eb3-a925-485c-90bd-a3b44ad94a0d"/>
+    <sequenceFlow id="sid-5112b088-2527-4a5f-8ce0-7d1c56e4dbea" sourceRef="sid-2972fcc9-6bb9-41ce-a716-77550fc8ac6a" targetRef="userRequest"/>
+    <sequenceFlow id="sid-61b1b15e-6611-483b-90be-723d6751fc0b" sourceRef="userRequest" targetRef="requestToWeatherApi"/>
+    <sequenceFlow id="sid-4a5919ec-70d3-4eea-8233-03d6ce62341d" sourceRef="requestToWeatherApi" targetRef="saveToDb"/>
+    <sequenceFlow id="sid-45d2b862-994f-4cdc-8298-b0e27e3a8584" sourceRef="saveToDb" targetRef="sid-b8787eb3-a925-485c-90bd-a3b44ad94a0d"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_weather-forecast-flow">
+    <bpmndi:BPMNPlane bpmnElement="weather-forecast-flow" id="BPMNPlane_weather-forecast-flow">
+      <bpmndi:BPMNShape id="shape-f790a3ec-aabe-4098-a0a4-55d9393cdbb8" bpmnElement="sid-2972fcc9-6bb9-41ce-a716-77550fc8ac6a">
+        <omgdc:Bounds x="-230.0" y="-30.0" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-1cd6b8a6-86ff-4fc3-913c-5c43af5b2715" bpmnElement="userRequest">
+        <omgdc:Bounds x="-180.0" y="-55.0" width="100.0" height="80.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-c098f470-0f5e-41f4-bf88-bbddf9d24d53" bpmnElement="requestToWeatherApi">
+        <omgdc:Bounds x="-50.0" y="-55.0" width="100.0" height="80.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-53a91cff-82bf-4dd2-8a91-43089e25fac2" bpmnElement="saveToDb">
+        <omgdc:Bounds x="80.520004" y="-55.0" width="100.0" height="80.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-6b93b71b-6da3-4e7f-bab3-78127e12dbcc" bpmnElement="sid-b8787eb3-a925-485c-90bd-a3b44ad94a0d">
+        <omgdc:Bounds x="225.0" y="-30.0" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-eb129d2d-47db-4712-8132-482fec7d745d" bpmnElement="sid-5112b088-2527-4a5f-8ce0-7d1c56e4dbea">
+        <omgdi:waypoint x="-200.0" y="-15.0"/>
+        <omgdi:waypoint x="-180.0" y="-15.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-fa57bfbd-d72d-4d7d-b525-c577cc6488b0" bpmnElement="sid-61b1b15e-6611-483b-90be-723d6751fc0b">
+        <omgdi:waypoint x="-80.0" y="-15.0"/>
+        <omgdi:waypoint x="-50.0" y="-15.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-c642d25b-f6e6-421b-a04c-df55fe1ed9ea" bpmnElement="sid-4a5919ec-70d3-4eea-8233-03d6ce62341d">
+        <omgdi:waypoint x="50.0" y="-15.0"/>
+        <omgdi:waypoint x="80.520004" y="-15.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-28bf31a5-01b8-4a79-bd19-9a093f470dbf" bpmnElement="sid-45d2b862-994f-4cdc-8298-b0e27e3a8584">
+        <omgdi:waypoint x="180.52" y="-15.0"/>
+        <omgdi:waypoint x="225.0" y="-15.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

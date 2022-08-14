@@ -5,7 +5,8 @@ spring:
     password: 1111
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
 api:
   url: http://api.openweathermap.org/data/2.5/weather?
   key: a6db6323a93a65f95bdc9b0966011fe1
+  partofpath: "&units=metric&APPID="
